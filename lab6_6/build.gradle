@@ -1,0 +1,68 @@
+version = 1.0
+group = 'com.megateam'
+
+allprojects {
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok:1.18.26'
+        annotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+        testCompileOnly 'org.projectlombok:lombok:1.18.26'
+        testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+    }
+
+    test {
+        useJUnitPlatform()
+
+        testLogging {
+            exceptionFormat "full"
+            events "passed", "failed"
+        }
+    }
+
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+
+    tasks.withType(JavaCompile).configureEach {
+        it.options.encoding = 'UTF-8'
+    }
+}
+
+dependencies {
+    implementation project(":common")
+    implementation project(":client")
+    implementation project(":server")
+
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+    implementation 'com.sun.xml.bind:jaxb-impl:2.3.4'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.megateam.lab.Main'
+    }
+
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+
+    from {
+        configurations.runtimeClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}
+
+tasks.register("allJavadoc", Javadoc) {
+    source subprojects.collect { it.sourceSets.main.allJava }
+    classpath = files(subprojects.collect {it.sourceSets.main.compileClasspath })
+    destinationDir = file("${projectDir}/docs")
+}
+
+build.finalizedBy(allJavadoc)

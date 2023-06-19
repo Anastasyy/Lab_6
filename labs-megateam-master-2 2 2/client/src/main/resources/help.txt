@@ -1,0 +1,100 @@
+############################## HELP ##############################
+------------------------------------------------------------------
+
+help -- command, that shows an information about existing commands
+    usage:
+        help
+
+------------------------------------------------------------------
+
+info -- command, that shows an information about the database
+    usage:
+        info
+
+------------------------------------------------------------------
+
+show -- command, that shows an information about the collection
+    usage:
+        show
+
+------------------------------------------------------------------
+
+add {element} -- command for adding a new element into collection
+    usage:
+        add
+        <collection input scenario started>
+
+------------------------------------------------------------------
+
+update -- command, that updates element in collection
+    usage:
+        update <id>
+        <collection input scenario started>
+
+------------------------------------------------------------------
+
+remove_by_id -- command, that removes element by id
+    usage:
+        remove_by_id <id>
+
+------------------------------------------------------------------
+
+clear -- command, that clears the existing collection
+    usage:
+        clear
+
+------------------------------------------------------------------
+
+save -- command, that saves existing collection to a file, specified in SAVING_FILE env variable
+    usage:
+        save
+
+------------------------------------------------------------------
+
+execute_script -- command, that executes a scripts of commands
+    usage:
+        execute_script <script>
+
+------------------------------------------------------------------
+
+exit -- command, that stops the application
+    usage:
+        exit
+
+------------------------------------------------------------------
+
+remove_first -- command, that removes first element of collection, if that element exists
+    usage:
+        remove_first
+
+------------------------------------------------------------------
+
+remove_last -- command, that remove last element of collection, if that element exists
+    usage:
+        remove_last
+------------------------------------------------------------------
+
+remove_lower -- command, that removes all the elements, lower than specified element
+    usage:
+        remove_lower
+        <db element input scenario started>
+------------------------------------------------------------------
+
+remove_any_by_refundable -- command, that removes first element with provided refundable status
+    usage:
+        remove_any_by_refundable <refundable status>
+
+------------------------------------------------------------------
+
+filter_less_than_type -- command, that prints all elements with type less than specified
+    usage:
+        filter_less_than_type <type>
+
+------------------------------------------------------------------
+
+print_field_descending_price -- command, that prints to console all the prices fields of existing elements in descending order
+    usage:
+        print_field_descending_price
+
+------------------------------------------------------------------
+############################## HELP ##############################
